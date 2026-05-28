@@ -539,7 +539,7 @@ Dedicated agents for:
 ## Install Dependencies
 
 ```bash
-pip install streamlit duckdb pandas google-generativeai openpyxl
+pip install -r requirements.txt
 ```
 
 ---
