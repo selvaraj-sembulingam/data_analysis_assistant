@@ -583,3 +583,17 @@ This project showcases how to build trustworthy AI systems for enterprise analyt
 * Stateful conversational UX
 
 The result is a conversational BI platform that is not only intelligent, but also explainable and governable.
+
+
+
+# Coreworks AI 
+Honestly, as an AI engineer who spends all day worrying about non-deterministic outputs, spending 15 minutes with Coreworks was incredibly refreshing. Most conversational BI prototypes out there are built like hand-wavy wrappers that dump a whole spreadsheet into a context window, cross their fingers, and pray the LLM does the math right—which, surprise, it rarely does at scale. Coreworks feels like it was actually designed by engineers who understand production realities. The separation of concerns between intent routing, data pulling, and document compilation is exactly how you have to build these things if you care about latency and token budgets. I love that it doesn't try to force the model to play calculator; instead, it uses the LLM as an orchestrator and lets a proper structured layer do the heavy lifting. The focus on ironclad row-level citations and programmatic abstention instead of letting the AI guess or extrapolate is the exact type of engineering discipline needed to make business users actually trust these systems.
+
+### 📊 Extending to PPT and Report Generation
+
+Because the engine functions strictly as an **Artifact Factory**, it decouples calculation from document formatting. On every turn, the system dumps a static, verified output pair into the Virtual File System workspace: `query_txn_..._data.csv` (the filtered data matrix) and `query_txn_..._manifest.json` (the exact generation recipe). 
+
+```text
+[ VFS Sandbox Vault ]
+   ├── query_txn_A1B2_data.csv      ──► [ Native PPTX Chart Engine ] ──► (Generates Bar/Line Charts)
+   └── query_txn_A1B2_manifest.json ──► [ Layout Templates Builder ] ──► (Paints Slide Titles & Audit Footnotes)
